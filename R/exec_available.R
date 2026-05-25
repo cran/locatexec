@@ -35,6 +35,12 @@
 #' if (exec_available("npm", version = "10.13.0")) {
 #'   cat("npm", as.character(exec_version("npm")), "is available!\n")
 #' }
+#' if (exec_available("air")) {
+#'   cat("air", as.character(exec_version("air")), "is available!\n")
+#' }
+#' if (exec_available("pandoc")) {
+#'   cat("pandoc", as.character(exec_version("pandoc")), "is available!\n")
+#' }
 #' if (exec_available("excel")) {
 #'   cat("excel", as.character(exec_version("excel")), "is available!\n")
 #' }
@@ -53,10 +59,12 @@ exec_available <- function(exec, version = NULL, error = FALSE) {
   msg <- c(
     exec,
     if (!is.null(version)) c("version", version, "or higher"),
-    "is required and was not found.")
+    "is required and was not found."
+  )
 
-  if (error && !x)
+  if (error && !x) {
     stop(paste(msg, collapse = " "), call. = FALSE)
+  }
 
   x
 }
